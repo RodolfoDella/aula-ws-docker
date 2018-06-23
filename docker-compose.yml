@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  api:
+    image: openjdk:8-jdk
+    restart: always
+    environment:
+      - TZ=America/Sao_Paulo
+    volumes:
+      - ./webservice/aula-swarm.jar:/aula-swarm.jar
+      - ./webservice/project-defaults.yml:/project-defaults.yml
+    command: bash -c "java -Xmx512m -Xss512m -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses -Dfile.encoding=UTF-8 -jar aula-swarm.jar -s project-defaults.yml"
+    ports:
+      - 8080:8080
+
